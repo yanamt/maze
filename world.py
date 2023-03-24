@@ -5,8 +5,8 @@ class World:
     def __init__(self, pos):
         self.block_type = {
             "N": 0,
-            "G": 1,
-            "W": 2,
+            "W": 1,
+            "G": 2,
             "T": 3
         }
 
