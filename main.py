@@ -10,6 +10,7 @@ Epsilon = .1
 Alpha = .1
 Gamma = .9
 Actions = np.arange(4)
+size = 10
 
 if __name__ == "__main__":
     env = World()

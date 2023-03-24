@@ -2,7 +2,7 @@ import copy
 
 
 class World:
-    def __init__(self, pos):
+    def __init__(self, pos: tuple):
         self.block_type = {
             "N": 0,
             "W": 1,
