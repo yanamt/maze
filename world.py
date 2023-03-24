@@ -2,7 +2,7 @@ import copy
 
 
 class World:
-    def __init__(self):
+    def __init__(self, pos):
         self.block_type = {
             "N": 0,
             "G": 1,
@@ -20,7 +20,7 @@ class World:
                     [0, 0, 0, 2],
                     [0, 0, 2, 0],
                     [0, 0, 0, 0]]
-        self.start_pos = 0, 3
+        self.start_pos = pos
         self.agent_pos = copy.deepcopy(self.start_pos)
 
     def step(self, action):
