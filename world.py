@@ -2,7 +2,7 @@ import copy
 
 
 class World:
-    def __init__(self, pos: tuple):
+    def __init__(self, pos: tuple, map: list):
         self.block_type = {
             "N": 0,
             "W": 1,
@@ -16,10 +16,7 @@ class World:
             "left": 2,
             "right": 3
         }
-        self.map = [[3, 2, 0, 1],
-                    [0, 0, 0, 2],
-                    [0, 0, 2, 0],
-                    [0, 0, 0, 0]]
+        self.map = map
         self.start_pos = pos
         self.agent_pos = copy.deepcopy(self.start_pos)
 

@@ -4,14 +4,14 @@ from typing import Tuple
 from collections import deque
 
 
-class generator:
+class Generator:
     def __init__(self, size: int) -> None:
         self.size = size
         self.start_pos = 1, size
         self.ini_maze = None
         self.maze = None
 
-    def generate(self) -> Tuple[list, list, int]:
+    def generate(self):
         # 迷路のランダム生成
         maze = [[1 for _ in range(self.size+2)]]
         for _ in range(self.size):
@@ -38,12 +38,13 @@ class generator:
             if maze[pos_y+1][pos_x+1] == 1:
                 maze[pos_y+1][pos_x+1] = 3
                 flag = False
+        possible, num_step = self._is_possible()
         # クリア可能か判定し，クリア可能な迷路ができるまで生成を繰り返す
-        if self._is_possible()[0]:
-            self.maze = maze[1:-1][1:-1]
-            return self.ini_maze, self.maze, self._is_possible()[1]
+        if possible and num_step > 10:
+            self.maze = [maze[i][1:-1] for i in range(1, self.size+1)]
+            return self.ini_maze, self.maze, num_step
         else:
-            self.generate()
+            return self.generate()
 
     def _is_possible(self):
         # 幅優先探索
@@ -66,15 +67,15 @@ class generator:
                 pos.append([x, y-1, depth + 1])
             if self.ini_maze[x][y+1] in [0, 2]:
                 pos.append([x, y+1, depth + 1])
-        return False, 0
+        return False, -1
 
 
 if __name__ == "__main__":
-    a = generator(10)
-    before, after, num = a.generate()
+    a = Generator(10)
+    before, after, step = a.generate()
     for line in before:
         print(line)
-    print("===============================")
+    print("=================================")
     for line in after:
         print(line)
-    print(num)
+    print(step)
