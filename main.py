@@ -5,7 +5,7 @@ from world import World
 from generator import Generator
 
 # パラメータ
-num_episode = 100
+num_episode = 200
 Epsilon = .1
 Alpha = .1
 Gamma = .9
